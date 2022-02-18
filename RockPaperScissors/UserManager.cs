@@ -52,59 +52,77 @@ namespace RockPaperScissors
 			}
 		}
 
-		public void CheckWinner(String userValue, String botValue)
+		public void CheckWinner(String userValue, String botValue, ref Int32 userScore, ref Int32 botScore)
 		{
 			if (this.CheckForTie(userValue, botValue))
 			{
 				Console.WriteLine("Das Spiel endet in einem unentschieden.");
+				;
 			}
-			//Schere
-			//0 > 2 (Schere schlägt Papier)
-			//0 < 1 (Stein schlägt Schere)
 			else if (userValue.Equals("s"))
 			{
-
-
 				if (botValue.Equals("r"))
 				{
 					Console.WriteLine("Der Computer gewinnt.");
+					botScore++;
 				}
 				else
 				{
 					Console.WriteLine("Du gewinnst.");
+					userScore++;
 				}
 			}
-			//Stein
-			//1 > 0 (Stein schlägt Schere)
-			//1 < 2 (Papier schlägt Stein)
 			else if (userValue.Equals("r"))
 			{
-				this.CheckForTie(userValue, botValue);
-
 				if (botValue.Equals("p"))
 				{
 					Console.WriteLine("Der Computer gewinnt.");
+					botScore++;
 				}
 				else
 				{
 					Console.WriteLine("Du gewinnst.");
+					userScore++;
 				}
 			}
-			//Papier
-			//2 < 0 (Schere schlägt Papier)
-			//2 > 1 (Papier schlägt Stein)
 			else
 			{
-				this.CheckForTie(userValue, botValue);
-
 				if (botValue.Equals("s"))
 				{
 					Console.WriteLine("Der Computer gewinnt.");
+					botScore++;
 				}
 				else
 				{
 					Console.WriteLine("Du gewinnst.");
+					userScore++;
 				}
+			}
+		}
+
+		public Boolean HasOnePlayerWon(Int32 userScore, Int32 botScore)
+		{
+			if (userScore == 2 | botScore == 2)
+			{
+				return true;
+			}
+
+			return false;
+		}
+
+		public void CheckFinalWinner(Int32 userScore, Int32 botScore)
+		{
+			if (userScore > botScore)
+			{
+				Console.WriteLine("Du hast gewonnen.");
+			}
+			else if (userScore < botScore)
+			{
+				Console.WriteLine("Der Computer hat gewonnen.");
+			}
+			else
+			{
+				Console.WriteLine("Das Spiel endete in einem Unterschied");
 			}
 		}
 
