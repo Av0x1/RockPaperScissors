@@ -9,33 +9,17 @@ namespace RockPaperScissors
 			UserManager userManager = new UserManager();
 			Random random = new Random();
 
-			Console.WriteLine("Guten Tag, dies ist ein Schere-Stein-Papier Spiel. Bitte wählen Sie Ihren Gegenstand:\nFür Schere bitte 'S' drücken.\nFür Stein bitte 'R' drücken.\nFür Papier bitte 'R' drücken.");
+			Console.WriteLine("Guten Tag, dies ist ein Schere-Stein-Papier Spiel. Bitte wählen Sie Ihren Gegenstand:\nFür Schere bitte 'S' drücken.\nFür Stein bitte 'R' drücken.\nFür Papier bitte 'P' drücken.");
 
-			String tool = userManager.ReadInput();
+			String playerValue = userManager.ReadInput();
 
-			String[] botTools = new String[3] { "s", "r", "p" };
-
+			String[] botTools = new String[3] { "s", "r", "p" }; //s = 0, r = 1, p = 2
 			Int32 bot = random.Next(0, 3);
 
-			//Schere
-			if(tool == "s")
-			{
-				userManager.DrawChecker(tool, botTools[bot]);
+			userManager.PrintUserValue(playerValue);
+			userManager.PrintBotValue(bot);
 
-				if()
-			}
-			//Stein
-			else if(tool == "r")
-			{
-				userManager.DrawChecker(tool, botTools[bot]);
-
-			}
-			//Papier
-			else
-			{
-				userManager.DrawChecker(tool, botTools[bot]);
-
-			}
+			userManager.CheckWinner(playerValue, botTools[bot]);
 		}
 	}
 }
